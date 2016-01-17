@@ -9,6 +9,7 @@ var bodyParser = require('body-parser');
 
 var config = require('./utils/config.js');
 
+var statusRoute = require('./routes/status');
 var apiRoute = require('./routes/api');
 
 var app = express();
@@ -22,6 +23,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+app.use('/status', statusRoute);
 app.use('/api', apiRoute);
 
 // catch 404 and forward to error handler
@@ -39,7 +41,7 @@ app.use(function(err, req, res, next) {
   } else if (err.stack) {
     logger.error('Unhandled error:', err, '\n', err.stack);
   } else {
-    logger.error('Unhandled error:', err);
+    logger.error('Unhandled error:', err.message, err);
   }
 
   res.status(err.status || 500);
