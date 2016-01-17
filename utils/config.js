@@ -8,6 +8,7 @@ var config = {
 
   env: process.env.NODE_ENV,
 
+  apiUsername: process.env.API_USERNAME,
   apiKey: process.env.API_KEY,
 
   testAchFile: process.env.TEST_ACH_FILE,
@@ -27,7 +28,13 @@ config.isDevelopment = config.env === config.DEVELOPMENT;
 config.isProduction = config.env === config.PRODUCTION;
 
 // Whether or not to use an API key
-config.useApiKey = !!config.apiKey;
+var hasApiUsername = !!config.apiUsername;
+var hasApiKey = !!config.apiKey;
+config.useApiKey = hasApiUsername && hasApiKey;
+
+if (hasApiUsername != hasApiKey) {
+  logger.warn('API username or key set without the other')
+}
 
 if (!config.useApiKey) {
   logger.info('Not using API key');

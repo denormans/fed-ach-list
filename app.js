@@ -1,13 +1,15 @@
 'use strict';
 
-var express = require('express');
-var path = require('path');
-var morgan = require('morgan');
-var logger = require('./utils/logger.js').normal;
-var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
+var express = require('express');
+var morgan = require('morgan');
+var path = require('path');
 
 var config = require('./utils/config.js');
+var logger = require('./utils/logger.js').normal;
+
+var auth = require('./services/auth.js');
 
 var statusRoute = require('./routes/status');
 var apiRoute = require('./routes/api');
@@ -24,7 +26,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use('/status', statusRoute);
-app.use('/api', apiRoute);
+app.use('/api', auth.authenticate(), apiRoute);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
