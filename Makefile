@@ -20,7 +20,7 @@ build-image:
 	docker build -t ${IMAGE_NAME} .
 
 build-aws: outdir
-	cd aws && zip ${OUT_DIR}/worker.zip -r * .[^.]* && cd ..
+	cd aws && zip ${OUT_DIR}/fedach-aws.zip -r * .[^.]* && cd ..
 
 run: tmpdir
 	docker run -it --rm --name fed-ach-list -p 3000:3000 -v ${TEMP_DIR}:/usr/src/app/data -e ACH_FILE_PATH=data/fed-ach-list.json ${IMAGE_NAME}
