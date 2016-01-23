@@ -1,5 +1,5 @@
 version: 1
 cron:
   - name: "ach-updater"
-    url: "/achupdate"
+    url: "/process/achupdate"
     schedule: "0 7 * * *"
