@@ -13,6 +13,7 @@ var auth = require('./services/auth.js');
 
 var statusRoute = require('./routes/status');
 var apiRoute = require('./routes/api');
+var processRoute = require('./routes/process');
 
 var app = express();
 
@@ -27,6 +28,7 @@ app.use(cookieParser());
 
 app.use('/status', statusRoute);
 app.use('/api', auth.authenticate(), apiRoute);
+app.use('/process', auth.authenticate(), processRoute);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

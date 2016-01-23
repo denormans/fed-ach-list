@@ -42,7 +42,7 @@ function loadCache() {
   achLoader.load().then(function(info) {
     achInfo = info;
     cacheLoadDate = moment();
-    logger.info('Loaded ACH list cache');
+    logger.info('Loaded ACH list cache: ' + info.size + ' entries');
   }).fail(function(err) {
     if (err.stack) {
       logger.warn('Failed to load ACH list cache:', err, '\n', err.stack);

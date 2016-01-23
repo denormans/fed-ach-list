@@ -6,7 +6,7 @@ WORKDIR /usr/src/app
 COPY package.json /usr/src/app/
 RUN npm install
 COPY bin /usr/src/app/bin
-COPY app.js downloader.js /usr/src/app/
+COPY app.js /usr/src/app/
 COPY routes /usr/src/app/routes
 COPY services /usr/src/app/services
 COPY utils /usr/src/app/utils

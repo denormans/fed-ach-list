@@ -79,6 +79,7 @@ function load() {
       };
 
       achInfoByRouting[achInfo.routing] = achInfo;
+      achInfoByRouting.size = achList.length;
     });
 
     return achInfoByRouting;

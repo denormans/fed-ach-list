@@ -5,16 +5,17 @@ var fs = require('fs');
 var request = require('request');
 var Q = require('q');
 
-var achIO = require('./services/io/ach.js');
-var config = require('./utils/config.js');
-var logger = require('./utils/logger.js').normal;
+var achIO = require('./io/ach.js');
+var config = require('../utils/config.js');
 
 /**
  * Downloads the ACH list and stores it in the appropriate place.
  */
 function downloadAndSave() {
   return download().then(function (achList) {
-    return achIO.save(achList);
+    return achIO.save(achList).then(function() {
+      return achList;
+    });
   });
 }
 

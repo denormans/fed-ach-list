@@ -5,8 +5,8 @@ var router = express.Router();
 
 var data = require('../services/data.js');
 
-/* GET users listing. */
-router.get('/:routingNumber', function(req, res, next) {
+/* GET routing number */
+router.get('/ach/:routingNumber', function(req, res, next) {
   var routingNumber = req.params.routingNumber;
   data.getByRouting(routingNumber).then(function(result) {
     if (!result) {
