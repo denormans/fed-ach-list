@@ -25,6 +25,9 @@ Build and Run
     
     # run the downloader
     make run-downloader
+    
+    # build the AWS zip file for upload to Elastic Beanstalk
+    make build-aws
 
 Configuration Options
 ---------------------
