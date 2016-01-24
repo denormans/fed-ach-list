@@ -1,14 +1,15 @@
 Fed ACH List
 ============
 
-API to retrieve data from the Fed ACH List.
-
-Pre-requisites
---------------
-- Node.js and NPM
+This service creates an API on top of the Federal Reserve list of ACH routing numbers.
 
 Build and Run
 -------------
+
+### Pre-requisites
+- Node.js and NPM
+
+### Make options
 
     # start the site locally at http://localhost:3000
     npm start
@@ -65,3 +66,12 @@ Using the API
     http://localhost:3000/process/achupdate
 
 NOTE: When using API username and key, pass them as HTTP Basic auth.
+
+License & Terms
+---------------
+
+This software is licensed under the APACHE 2 open source license. See LICENSE.txt for details.
+
+In addition, in order to download the ACH list from the Federal Reserve, you must accept the agreement and
+terms and conditions from the Federal Reserve at https://www.frbservices.org/EPaymentsDirectory/agreement.html.
+Deploying and using this software indicates that you agree to these terms.
