@@ -5,13 +5,13 @@ var logger = require('../utils/logger.js').normal;
 
 logger.info('Downloading the ACH list and saving it...');
 downloader.downloadAndSave().then(function (achList) {
-}).then(function() {
-    logger.info('Done. Downloaded ' + achList.length + ' entries');
-}).fail(function(err) {
-    if (err.stack) {
-        logger.error('Error downloading ACH list:', err, '\n', err.stack);
-    } else {
-        logger.error('Error downloading ACH list:', err.message, err);
-    }
+}).then(function () {
+  logger.info('Done. Downloaded ' + achList.length + ' entries');
+}).fail(function (err) {
+  if (err.stack) {
+    logger.error('Error downloading ACH list:', err, '\n', err.stack);
+  } else {
+    logger.error('Error downloading ACH list:', err.message, err);
+  }
 });
 

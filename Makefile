@@ -13,7 +13,7 @@ push-image: tag-image
 	docker push denormans/${IMAGE_NAME}
 
 tag-image: build-image
-	docker tag -f ${IMAGE_NAME} denormans/${IMAGE_NAME}:1.0
+	docker tag -f ${IMAGE_NAME} denormans/${IMAGE_NAME}:1.1
 	docker tag -f ${IMAGE_NAME} denormans/${IMAGE_NAME}:latest
 
 build-image:

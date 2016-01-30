@@ -10,6 +10,12 @@ var config = {
 
   apiUsername: process.env.API_USERNAME,
   apiKey: process.env.API_KEY,
+  apiAlgorithm: process.env.API_AUTH_ALGORITHM,
+
+  ApiAuthAlgorithms: {
+    BASIC: 'basic',
+    DIGEST: 'digest'
+  },
 
   testAchFile: process.env.TEST_ACH_FILE,
 
@@ -24,20 +30,41 @@ if (!config.env) {
   logger.info('No environment specified, using', config.env);
 }
 
+config.env = config.env.toLowerCase();
+
 config.isDevelopment = config.env === config.DEVELOPMENT;
 config.isProduction = config.env === config.PRODUCTION;
 
 // Whether or not to use an API key
 var hasApiUsername = !!config.apiUsername;
 var hasApiKey = !!config.apiKey;
-config.useApiKey = hasApiUsername && hasApiKey;
+config.useApiAuth = hasApiUsername && hasApiKey;
 
 if (hasApiUsername != hasApiKey) {
   logger.warn('API username or key set without the other')
 }
 
-if (!config.useApiKey) {
-  logger.info('Not using API key');
+if (config.useApiAuth) {
+  if (!config.apiAlgorithm) {
+    config.apiAlgorithm = config.ApiAuthAlgorithms.BASIC;
+    logger.info('No API Algorithm specified, using', config.apiAlgorithm);
+  }
+
+  config.apiAlgorithm = config.apiAlgorithm.toLowerCase();
+
+  var algoFound = false;
+  for (var key in config.ApiAuthAlgorithms) {
+    if (config.ApiAuthAlgorithms.hasOwnProperty(key) && config.ApiAuthAlgorithms[key] === config.apiAlgorithm) {
+      algoFound = true;
+    }
+  }
+
+  if (!algoFound) {
+    logger.warn('Unknown API authorization algorithm: ' + config.apiAlgorithm + '. Using ' + config.ApiAuthAlgorithms.BASIC);
+    config.apiAlgorithm = config.ApiAuthAlgorithms.BASIC;
+  }
+} else {
+  logger.info('Not using API authorization');
 }
 
 // Set up AWS S3

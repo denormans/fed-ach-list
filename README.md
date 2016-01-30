@@ -35,14 +35,22 @@ Configuration Options
 Configuration can be updated by setting environment variables
 
 ### NODE_ENV
-development: This is a development or testing environment (default)
-production: This is a production environment
+The environment setting that changes behavior of logging and error messages.
+
+- development: This is a development or testing environment (default)
+- production: This is a production environment
 
 ### API_USERNAME
 Username for the API
 
 ### API_KEY
 Key for the API
+
+### API_AUTH_ALGORITHM
+Algorithm for the API authentication.
+
+- basic: This is a shared key using HTTP Basic Auth (default)
+- digest: This is a digest using HTTP Digest Auth. Note: Digest realm is "api". Also, be sure to set a non-empty nonce value.
 
 ### TEST_ACH_FILE
 A test ACH file to use when updating the ACH list. If not set, the downloader will pull from the Federal Reserve.

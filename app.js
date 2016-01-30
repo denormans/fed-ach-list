@@ -27,8 +27,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use('/status', statusRoute);
-app.use('/api', auth.authenticate(), apiRoute);
-app.use('/process', auth.authenticate(), processRoute);
+app.use('/', auth.authenticate());
+app.use('/api', apiRoute);
+app.use('/process', processRoute);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
