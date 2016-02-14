@@ -14,11 +14,8 @@ Build and Run
     # start the site locally at http://localhost:3000
     npm start
 
-    # build the docker image
+    # build the docker image locally
     make build
-    
-    # build & push the docker image
-    make push
     
     # run the server 
     make run
@@ -28,6 +25,16 @@ Build and Run
     
     # build the AWS zip file for upload to Elastic Beanstalk
     make build-aws
+    
+### Push changes
+
+DockerHub automatically builds changes from the repo, so commit and push master, and push the correct version tag to get a new build.
+
+    # tag new build
+    git tag 1.1
+    
+    # push tags
+    git push --tags
 
 Configuration Options
 ---------------------
