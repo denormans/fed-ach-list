@@ -3,6 +3,7 @@
 var passport = require('passport');
 var BasicStrategy = require('passport-http').BasicStrategy;
 var DigestStrategy = require('passport-http').DigestStrategy;
+var HawkStrategy = require('passport-hawk');
 
 var config = require('../utils/config.js');
 
@@ -36,6 +37,24 @@ if (config.useApiAuth) {
       );
       break;
 
+    case config.ApiAuthAlgorithms.HAWK:
+      passport.use('hawk', new HawkStrategy(
+        function (username, callback) {
+          if (username == config.apiUsername) {
+            callback(null, {
+              user: {
+                id: username
+              },
+              key: config.apiKey,
+              algorithm: 'sha256'
+            });
+          } else {
+            callback(null, false);
+          }
+        })
+      );
+      break;
+
     default:
       throw new Error('Unknown API auth algorithm:' + config.apiAlgorithm);
   }
@@ -50,6 +69,10 @@ function authenticate() {
 
       case config.ApiAuthAlgorithms.DIGEST:
         return passport.authenticate('digest', { session: false });
+        break;
+
+      case config.ApiAuthAlgorithms.HAWK:
+        return passport.authenticate('hawk', { session: false });
         break;
 
       default:

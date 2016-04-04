@@ -14,7 +14,8 @@ var config = {
 
   ApiAuthAlgorithms: {
     BASIC: 'basic',
-    DIGEST: 'digest'
+    DIGEST: 'digest',
+    HAWK: 'hawk'
   },
 
   testAchFile: process.env.TEST_ACH_FILE,
