@@ -16,7 +16,7 @@
     "hawk": "^4.1.2",
     "hbs": "~3.1.0",
     "moment": "^2.10.6",
-    "morgan": "1.9.1",
+    "morgan": "1.10.1",
     "passport": "^0.3.2",
     "passport-hawk": "^2.0.0",
     "passport-http": "^0.3.0",
