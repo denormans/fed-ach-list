@@ -10,7 +10,7 @@
     "aws-sdk": "^2.2.30",
     "body-parser": "~1.20.0",
     "cookie-parser": "~1.4.0",
-    "debug": "2.2.0",
+    "debug": "2.6.9",
     "express": "~4.22.0",
     "fedach": "^0.3.0",
     "hawk": "^4.1.2",
